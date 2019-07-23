@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <!--Ajout des couleurs qui servent a styliser les vues -->
+    <color name="colorAdd1">#BFFEF6</color>
+    <color name="colorAdd2">#BFFEF6</color>
+    <color name="colorAdd3">#08FE8B</color>
+</resources>
