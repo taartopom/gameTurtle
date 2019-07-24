@@ -88,7 +88,7 @@ public class NagerView extends View {
         score =  0;
         lifeTurtle = 3;
         dreamScape.start();
-        chopsticks.stop();
+
 
     }
 
@@ -185,8 +185,8 @@ public class NagerView extends View {
 
         //la perte des coeurs dans une boucle for pour
         for (int i=0; i<3; i++ ){
-            int x  = (int)(580 + vie[0].getWidth() * 1.5 * 1);
-            int y = 10;
+            int x  = (int)(500 + vie[0].getWidth() * 1.5 * i);
+            int y = 5;
             if (i < lifeTurtle){
                 canvas.drawBitmap(vie[0], x, y, null);
             }
