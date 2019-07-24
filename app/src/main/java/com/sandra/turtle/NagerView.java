@@ -8,6 +8,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
@@ -43,6 +44,9 @@ public class NagerView extends View {
     private int canvasWidth, canvasHeight;
     private boolean touch = false;
 
+    private MediaPlayer miam;
+    private MediaPlayer beurk;
+
     /**
      * pour gerer la premier tortue sur la vue
      * @param context
@@ -71,6 +75,9 @@ public class NagerView extends View {
         vie[0] =  BitmapFactory.decodeResource(getResources(), R.drawable.heartfull);
         vie[1] =  BitmapFactory.decodeResource(getResources(), R.drawable.heartempty);
 
+        //les sons du jeu
+         miam = MediaPlayer.create(getContext(),R.raw.miam);
+         beurk =  MediaPlayer.create(getContext(),R.raw.beurk);
 
         //parametre par default
         turtleY = 500;
@@ -118,13 +125,16 @@ public class NagerView extends View {
          * 2.c- si elle perd tous ses coeurs , la partie est fini
          */
         if (eatBouffeChecker(bouffeX, bouffeY)){
+            miam.start();
             score =  score + 10;
             bouffeX = - 100;
         }
         if(eatBadBouffeChercker(notbouffeX,notbouffeY)){
+            beurk.start();
             score =  score - 20;
             notbouffeX = -100;
             lifeTurtle--;
+
             if(lifeTurtle == 0){
                 Toast.makeText(getContext(),"Game Over", Toast.LENGTH_SHORT).show();
 
@@ -209,6 +219,8 @@ public class NagerView extends View {
      */
     public boolean eatBouffeChecker(int x,int y){
         if(turtleX < x && x < (turtleX + turtle[0].getWidth()) && turtleY < y && y < ( turtleY + turtle[0].getHeight())){
+
+
             return true;
         }
         return false;
