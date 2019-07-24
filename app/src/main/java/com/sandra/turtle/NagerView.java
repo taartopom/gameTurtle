@@ -47,6 +47,7 @@ public class NagerView extends View {
     private MediaPlayer miam;
     private MediaPlayer beurk;
     private MediaPlayer dreamScape;
+    private MediaPlayer chopsticks;
 
     /**
      * pour gerer la premier tortue sur la vue
@@ -80,12 +81,14 @@ public class NagerView extends View {
          miam = MediaPlayer.create(getContext(),R.raw.miam);
          beurk =  MediaPlayer.create(getContext(),R.raw.beurk);
          dreamScape =  MediaPlayer.create(getContext(),R.raw.dreamscape);
+         chopsticks =  MediaPlayer.create(getContext(),R.raw.chopsticks);
 
         //parametre par default
         turtleY = 500;
         score =  0;
         lifeTurtle = 3;
         dreamScape.start();
+        chopsticks.stop();
 
     }
 
@@ -128,6 +131,7 @@ public class NagerView extends View {
          * 2.c- si elle perd tous ses coeurs , la partie est fini
          */
         if (eatBouffeChecker(bouffeX, bouffeY)){
+            chopsticks.stop();
             miam.start();
             score =  score + 10;
             bouffeX = - 100;
@@ -145,6 +149,9 @@ public class NagerView extends View {
                 gameOverIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 gameOverIntent.putExtra("score", score);
                 getContext().startActivity(gameOverIntent);
+                dreamScape.stop();
+                chopsticks.start();
+
 
             }
 
