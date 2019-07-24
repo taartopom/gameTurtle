@@ -46,6 +46,7 @@ public class NagerView extends View {
 
     private MediaPlayer miam;
     private MediaPlayer beurk;
+    private MediaPlayer dreamScape;
 
     /**
      * pour gerer la premier tortue sur la vue
@@ -78,11 +79,13 @@ public class NagerView extends View {
         //les sons du jeu
          miam = MediaPlayer.create(getContext(),R.raw.miam);
          beurk =  MediaPlayer.create(getContext(),R.raw.beurk);
+         dreamScape =  MediaPlayer.create(getContext(),R.raw.dreamscape);
 
         //parametre par default
         turtleY = 500;
         score =  0;
         lifeTurtle = 3;
+        dreamScape.start();
 
     }
 
@@ -219,7 +222,6 @@ public class NagerView extends View {
      */
     public boolean eatBouffeChecker(int x,int y){
         if(turtleX < x && x < (turtleX + turtle[0].getWidth()) && turtleY < y && y < ( turtleY + turtle[0].getHeight())){
-
 
             return true;
         }

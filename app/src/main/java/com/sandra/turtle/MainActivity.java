@@ -2,6 +2,7 @@ package com.sandra.turtle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -17,12 +18,14 @@ public class MainActivity extends AppCompatActivity {
     private NagerView gameView;
     private Handler maitre = new Handler();
     private final static long Interval =  30;
+    private MediaPlayer dreamspace;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         gameView =  new NagerView(this);
         setContentView(gameView);
+
 
         Timer timer =  new Timer();
         timer.schedule(new TimerTask() {
