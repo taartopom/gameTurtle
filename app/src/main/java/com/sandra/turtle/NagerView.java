@@ -88,6 +88,7 @@ public class NagerView extends View {
         score =  0;
         lifeTurtle = 3;
         dreamScape.start();
+        chopsticks.stop();
 
 
     }
@@ -131,9 +132,9 @@ public class NagerView extends View {
          * 2.c- si elle perd tous ses coeurs , la partie est fini
          */
         if (eatBouffeChecker(bouffeX, bouffeY)){
-            chopsticks.stop();
             miam.start();
             score =  score + 10;
+
             bouffeX = - 100;
         }
         if(eatBadBouffeChercker(notbouffeX,notbouffeY)){
@@ -145,16 +146,14 @@ public class NagerView extends View {
             if(lifeTurtle == 0){
                 Toast.makeText(getContext(),"Game Over", Toast.LENGTH_SHORT).show();
 
+                dreamScape.stop();
+                chopsticks.start();
+
                 Intent gameOverIntent = new Intent(getContext(),GameOverActivity.class);
                 gameOverIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 gameOverIntent.putExtra("score", score);
                 getContext().startActivity(gameOverIntent);
-                dreamScape.stop();
-                chopsticks.start();
-
-
             }
-
         }
 /*-----------------------------------------------------------------------------------------------*/
         //Les interactions sur la vue
@@ -197,7 +196,6 @@ public class NagerView extends View {
 
         // taille du score sur la vue
         canvas.drawText("Score : "+ score,20, 60, scorePaint);
-
 
 
         canvas.drawBitmap(bouffe, bouffeX, bouffeY, null);
